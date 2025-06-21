@@ -80,25 +80,28 @@ function closeSearchModal() {
 }
 
 async function searchTMDB() {
-  const query = document.getElementById('search-input').value;
-  if (!query.trim()) {
-    document.getElementById('search-results').innerHTML = '';
-    return;
+  const query = document.getElementById('search-input').value;
+  if (!query.trim()) {
+    document.getElementById('search-results').innerHTML = '';
+    return;
   }
+  
   const res = await fetch(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`);
-  const data = await res.json();
+  const data = await res.json();
+  
   const container = document.getElementById('search-results');
-  container.innerHTML = '';
+  container.innerHTML = ''; // ✅ Clear results (walang duplication)
+  
   data.results.forEach(item => {
-    if (!item.poster_path) return;
-    const img = document.createElement('img');
-    img.src = `${IMG_URL}${item.poster_path}`;
-    img.alt = item.title || item.name;
-    img.onclick = () => {
-      closeSearchModal();
-      showDetails(item);
-    };
-    container.appendChild(img);
+    if (!item.poster_path) return;
+    const img = document.createElement('img');
+    img.src = `${IMG_URL}${item.poster_path}`;
+    img.alt = item.title || item.name;
+    img.onclick = () => {
+      closeSearchModal();
+      showDetails(item);
+    };
+    container.appendChild(img);
   });
 }
 
