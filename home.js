@@ -17,6 +17,9 @@ async function fetchAnime() {
 
 function createCard(item, type) {
   const imgPath = type === 'anime' ? item.images.jpg.image_url : IMG_URL + item.poster_path;
+  
+  if (!imgPath || imgPath.includes("null")) return null; // ✅ Skip broken poster
+
   const div = document.createElement('div');
   div.className = 'card';
   div.innerHTML = `<img src="${imgPath}" alt="${item.title || item.name}" />`;
@@ -38,7 +41,8 @@ async function loadSection(type) {
     const tmdb = await fetchTMDB(TRENDING[type]);
     items = tmdb.results;
   }
-
+  
+  console.log("Fetched items:", items); // 
   const banner = items[0];
   document.getElementById('banner').style.backgroundImage = banner?.backdrop_path || banner?.images?.jpg?.image_url
     ? `url(${type === 'anime' ? banner.images.jpg.image_url : IMG_URL + banner.backdrop_path})`
