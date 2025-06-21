@@ -284,3 +284,10 @@
     gap: 8px;
   }
 }
+/* [Paste your full CSS that you provided earlier] */
+...
+/* Add this for basic wrapper rows */
+#rows-wrapper .row {
+  padding: 20px;
+  background: #111;
+}
