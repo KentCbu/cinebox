@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Website</title>
+  <title>MobiPlex</title>
   <link rel="stylesheet" href="home.css">
   <script defer src="home.js"></script>
 </head>
@@ -15,54 +15,49 @@
       <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
     </div>
   </div>
+
   <div class="slider" id="slider"></div>
+
   <div class="row"><h2>Trending Movies</h2><div class="list" id="movies-list"></div></div>
   <div class="row"><h2>Trending TV Shows</h2><div class="list" id="tvshows-list"></div></div>
   <div class="row"><h2>Trending Anime</h2><div class="list" id="anime-list"></div></div>
+
   <div class="modal" id="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
       <div class="modal-body">
-        
-      <!-- Server Selector -->  
-      <div class="server-selector">
-        <label for="server">Change Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
-        </select>
+        <div class="server-selector">
+          <label for="server">Change Server:</label>
+          <select id="server" onchange="changeServer()">
+            <option value="vidsrc.cc">Vidsrc.cc</option>
+            <option value="vidsrc.me">Vidsrc.me</option>
+            <option value="player.videasy.net">Player.Videasy.net</option>
+          </select>
+        </div>
+        <div class="warning-box">⚠️ If video doesn't play, try changing to another server.</div>
+        <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
+        </div>
+        <div class="recommended-section">
+          <h3>Recommended Movies</h3>
+          <div class="list" id="recommended-list"></div>
+        </div>
       </div>
-
-      <!-- Warning box -->
-      <div class="warning-box">
-        ⚠️ If video doesn't play, try changing to another server.
-      </div>
-        
-      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
-
-      <!-- Movie Info -->
-      <div class="modal-text">
-        <h2 id="modal-title"></h2>
-        <div class="stars" id="modal-rating"></div>
-        <p id="modal-description"></p>
-      </div>
-
-      <!-- Recommended Section -->
-      <div class="recommended-section">
-        <h3>Recommended Movies</h3>
-        <div class="list" id="recommended-list"></div>
-      </div>
+    </div>
   </div>
-      
+
   <div class="search-modal" id="search-modal">
     <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
     <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
     <div class="results" id="search-results"></div>
   </div>
+
   <footer class="footer">
     <div class="footer-content">
-      <p>&copy; 2025 My Website. All rights reserved.</p>
+      <p>&copy; 2025 MobiPlex. All rights reserved.</p>
       <div class="footer-links">
         <a href="#">Disclaimer</a>
         <a href="#">About Us</a>
