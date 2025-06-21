@@ -41,7 +41,3 @@ body { font-family: Arial, sans-serif; background: #111; color: #fff; }
   align-self: flex-start;
   font-weight: bold;
 }
-
-.close-btn:hover {
-  background: darkred;
-}
