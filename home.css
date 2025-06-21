@@ -57,4 +57,7 @@ body { font-family: Arial, sans-serif; background: #111; color: #fff; }
   margin: 15px 0;
   display: block;
 }
+#modal-video {
+  height: 250px;
+}
 
