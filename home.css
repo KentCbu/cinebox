@@ -48,3 +48,13 @@ body { font-family: Arial, sans-serif; background: #111; color: #fff; }
   overflow-x: auto;
 }
 
+/* FIX for video frame display */
+#modal-video {
+  width: 100%;
+  height: 400px;
+  max-width: 100%;
+  border: none;
+  margin: 15px 0;
+  display: block;
+}
+
