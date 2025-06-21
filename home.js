@@ -41,6 +41,9 @@ function showDetails(item) {
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round(item.vote_average / 2));
   changeServer();
   document.getElementById('modal').style.display = 'flex';
+
+  // 🔥 Load Recommended movies
+  loadRecommended(item.id);
 }
 
 function changeServer() {
@@ -133,3 +136,16 @@ async function loadSlider() {
   setInterval(updateSlider, 5000);
 }
 loadSlider();
+async function loadRecommended(movieId) {
+  const res = await fetch(`${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}`);
+  const data = await res.json();
+  const list = document.getElementById("recommended-list");
+  list.innerHTML = '';
+  data.results.slice(0, 10).forEach(item => {
+    const img = document.createElement("img");
+    img.src = `${IMG_URL}${item.poster_path}`;
+    img.alt = item.title;
+    img.onclick = () => showDetails(item);
+    list.appendChild(img);
+  });
+}
