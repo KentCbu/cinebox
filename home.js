@@ -157,3 +157,8 @@ async function loadSlider() {
   setInterval(updateSlider, 5000);
 }
 loadSlider();
+function closeSearchModal() {
+  document.getElementById('search-modal').style.display = 'none';
+  document.getElementById('search-results').innerHTML = '';
+  document.getElementById('search-input').value = '';
+}
