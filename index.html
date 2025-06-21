@@ -2,68 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Movie Site</title>
-  <link rel="stylesheet" href="css/home.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Website</title>
+  <link rel="stylesheet" href="home.css">
+  <script defer src="home.js"></script>
 </head>
 <body>
-  <nav class="navbar">
-    <img src="assets/logo.png" alt="Logo" />
+  <div class="navbar">
+    <div class="logo-text">MobiPlex</div>
     <div class="nav-links">
-      <a href="#" id="btn-trending">Trending</a>
-      <a href="#" id="btn-tv">TV Shows</a>
-      <a href="#" id="btn-anime">Anime</a>
-      <input type="text" id="search-input" class="search-bar" placeholder="Search..." />
+      <a href="index.html">Home</a>
+      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
     </div>
-  </nav>
-  <section id="banner" class="banner">
-    <h1 id="banner-title">Welcome!</h1>
-  </section>
-  <div id="rows-wrapper"></div>
-
-  <!-- Modal for details/player -->
+  </div>
+  <div class="slider" id="slider"></div>
+  <div class="row"><h2>Trending Movies</h2><div class="list" id="movies-list"></div></div>
+  <div class="row"><h2>Trending TV Shows</h2><div class="list" id="tvshows-list"></div></div>
+  <div class="row"><h2>Trending Anime</h2><div class="list" id="anime-list"></div></div>
   <div class="modal" id="modal">
     <div class="modal-content">
-      <span class="close" id="modal-close">&times;</span>
+      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
       <div class="modal-body">
-        <img id="modal-poster" src="" alt="Poster" />
+        <img id="modal-image" src="" alt="" />
         <div class="modal-text">
           <h2 id="modal-title"></h2>
-          <p id="modal-overview"></p>
-          <div class="stars" id="modal-vote"></div>
-          <div class="server-selector">
-            <label>
-              Server:
-              <select id="server-select">
-                <option value="server1">Server 1</option>
-                <option value="server2">Server 2</option>
-              </select>
-            </label>
-          </div>
-          <div id="video-wrapper"></div>
+          <div class="stars" id="modal-rating"></div>
+          <p id="modal-description"></p>
         </div>
       </div>
+      <div class="server-selector">
+        <label for="server">Change Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Vidsrc.cc</option>
+          <option value="vidsrc.me">Vidsrc.me</option>
+          <option value="player.videasy.net">Player.Videasy.net</option>
+        </select>
+      </div>
+      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
-
-  <!-- Search Modal -->
   <div class="search-modal" id="search-modal">
-    <span class="close" id="search-close">&times;</span>
-    <input type="text" id="search-bar-input" placeholder="Search movies, TV shows, anime..." />
+    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
     <div class="results" id="search-results"></div>
   </div>
-
   <footer class="footer">
     <div class="footer-content">
-      &copy; 2025 My Movie Site
+      <p>&copy; 2025 My Website. All rights reserved.</p>
       <div class="footer-links">
-        <a href="#">Home</a>
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
+        <a href="#">Disclaimer</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
       </div>
     </div>
   </footer>
-
-  <script defer src="js/home.js"></script>
 </body>
 </html>
