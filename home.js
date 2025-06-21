@@ -1,4 +1,4 @@
-  const API_KEY = '57ebea8e5cdcf68d4e8f4d20ca5bd4ac';
+const API_KEY = '57ebea8e5cdcf68d4e8f4d20ca5bd4ac';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
@@ -14,9 +14,7 @@ async function fetchTrendingAnime() {
   for (let page = 1; page <= 3; page++) {
     const res = await fetch(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}&page=${page}`);
     const data = await res.json();
-    const filtered = data.results.filter(item =>
-      item.original_language === 'ja' && item.genre_ids.includes(16)
-    );
+    const filtered = data.results.filter(item => item.original_language === 'ja' && item.genre_ids.includes(16));
     allResults = allResults.concat(filtered);
   }
   return allResults;
@@ -38,11 +36,9 @@ function displayList(items, containerId) {
 function showDetails(item) {
   currentItem = item;
   if (!item.media_type) item.media_type = item.title ? "movie" : "tv";
-
   document.getElementById('modal-title').textContent = item.title || item.name;
   document.getElementById('modal-description').textContent = item.overview || 'No description available.';
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round((item.vote_average || 0) / 2));
-
   document.getElementById('modal').style.display = 'flex';
   changeServer();
   loadRecommended(item.id);
@@ -76,32 +72,32 @@ function openSearchModal() {
 
 function closeSearchModal() {
   document.getElementById('search-modal').style.display = 'none';
+  document.getElementById('search-input').value = '';
   document.getElementById('search-results').innerHTML = '';
 }
 
 async function searchTMDB() {
-  const query = document.getElementById('search-input').value;
-  if (!query.trim()) {
-    document.getElementById('search-results').innerHTML = '';
-    return;
+  const query = document.getElementById('search-input').value;
+  if (!query.trim()) {
+    document.getElementById('search-results').innerHTML = '';
+    return;
   }
-  
+
   const res = await fetch(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`);
-  const data = await res.json();
-  
+  const data = await res.json();
   const container = document.getElementById('search-results');
-  container.innerHTML = ''; // ✅ Clear results (walang duplication)
-  
+  container.innerHTML = '';
+
   data.results.forEach(item => {
-    if (!item.poster_path) return;
-    const img = document.createElement('img');
-    img.src = `${IMG_URL}${item.poster_path}`;
-    img.alt = item.title || item.name;
-    img.onclick = () => {
-      closeSearchModal();
-      showDetails(item);
-    };
-    container.appendChild(img);
+    if (!item.poster_path) return;
+    const img = document.createElement('img');
+    img.src = `${IMG_URL}${item.poster_path}`;
+    img.alt = item.title || item.name;
+    img.onclick = () => {
+      closeSearchModal();
+      showDetails(item);
+    };
+    container.appendChild(img);
   });
 }
 
@@ -157,8 +153,4 @@ async function loadSlider() {
   setInterval(updateSlider, 5000);
 }
 loadSlider();
-function closeSearchModal() {
-  document.getElementById('search-modal').style.display = 'none';
-  document.getElementById('search-results').innerHTML = '';
-  document.getElementById('search-input').value = '';
-}
+                       
