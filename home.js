@@ -191,8 +191,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('disclaimer-popup').style.display = 'flex';
   }
 });
- window.addEventListener('popstate', (event) => {
-  // Close modal on back
-  closeModal();
-});
+ 
 
