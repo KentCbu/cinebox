@@ -3,14 +3,14 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 let currentItem;
 
-// Fetch trending data
+// 🔥 Fetch trending content
 async function fetchTrending(type) {
   const res = await fetch(`${BASE_URL}/trending/${type}/week?api_key=${API_KEY}`);
   const data = await res.json();
   return data.results;
 }
 
-// Fetch anime
+// 🔥 Fetch trending anime (filter Japanese + Animation genre)
 async function fetchTrendingAnime() {
   let allResults = [];
   for (let page = 1; page <= 3; page++) {
@@ -24,13 +24,13 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
-// Display banner
+// ✅ Display banner
 function displayBanner(item) {
   document.getElementById('banner').style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
   document.getElementById('banner-title').textContent = item.title || item.name;
 }
 
-// Display movie/tv/anime lists
+// ✅ Display movie list
 function displayList(items, containerId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
@@ -43,23 +43,23 @@ function displayList(items, containerId) {
   });
 }
 
-// Show modal with details
+// ✅ Show movie details in modal
 function showDetails(item) {
   currentItem = item;
-  if (!item.media_type) item.media_type = item.title ? "movie" : "tv";
+  if (!item.media_type) item.media_type = item.title ? 'movie' : 'tv';
 
   const type = item.media_type;
   const url = `${window.location.origin}/watch?type=${type}&id=${item.id}`;
   window.history.pushState({item}, '', url);
 
   document.getElementById('modal-title').textContent = item.title || item.name;
-  document.getElementById('modal-description').textContent = item.overview || 'No description.';
+  document.getElementById('modal-description').textContent = item.overview || 'No description available.';
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round((item.vote_average || 0) / 2));
   changeServer();
   document.getElementById('modal').style.display = 'flex';
 }
 
-// Change video server
+// ✅ Change video source based on dropdown
 function changeServer() {
   const server = document.getElementById('server').value;
   const type = currentItem.media_type === "movie" ? "movie" : "tv";
@@ -78,26 +78,24 @@ function changeServer() {
   document.getElementById('modal-video').src = embedURL;
 }
 
-// Close modal
+// ✅ Close modal
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('modal-video').src = '';
   window.history.pushState({}, '', '/');
 }
 
-// Open search modal
+// ✅ Search bar open/close
 function openSearchModal() {
   document.getElementById('search-modal').style.display = 'flex';
   document.getElementById('search-input').focus();
 }
-
-// Close search modal
 function closeSearchModal() {
   document.getElementById('search-modal').style.display = 'none';
   document.getElementById('search-results').innerHTML = '';
 }
 
-// Search TMDB
+// ✅ TMDB Search function
 async function searchTMDB() {
   const query = document.getElementById('search-input').value;
   if (!query.trim()) {
@@ -142,7 +140,7 @@ async function searchTMDB() {
   });
 }
 
-// Load initial data
+// ✅ Initial load
 async function init() {
   const movies = await fetchTrending('movie');
   const tvShows = await fetchTrending('tv');
@@ -154,34 +152,8 @@ async function init() {
   displayList(anime, 'anime-list');
 }
 
-// Auto-load if URL has watch params
+// ✅ Load from URL
 window.addEventListener('DOMContentLoaded', async () => {
-  const params = new URLSearchParams(window.location.search);
-  const type = params.get('type');
-  const id = params.get('id');
-  if (type && id) {
-    const res = await fetch(`${BASE_URL}/${type}/${id}?api_key=${API_KEY}`);
-    const item = await res.json();
-    item.media_type = type;
-    showDetails(item);
-  }
-});
-
-// Back button closes modal
-window.addEventListener('popstate', () => {
-  closeModal();
-});
-
-// Init on load
-init();
-function acceptDisclaimer() {
-  localStorage.setItem('disclaimerAccepted', 'true');
-  document.getElementById('disclaimer-popup').style.display = 'none';
-  document.getElementById('main-content').style.display = 'block';
-  document.body.style.overflow = 'auto';
-}
-
-window.addEventListener('DOMContentLoaded', () => {
   const isAccepted = localStorage.getItem('disclaimerAccepted');
   const popup = document.getElementById('disclaimer-popup');
   const main = document.getElementById('main-content');
@@ -194,4 +166,29 @@ window.addEventListener('DOMContentLoaded', () => {
     main.style.display = 'none';
     document.body.style.overflow = 'hidden';
   }
+
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type');
+  const id = params.get('id');
+  if (type && id) {
+    const res = await fetch(`${BASE_URL}/${type}/${id}?api_key=${API_KEY}`);
+    const item = await res.json();
+    item.media_type = type;
+    showDetails(item);
+  }
+
+  await init(); // Load movie lists
 });
+
+// ✅ Back button closes modal
+window.addEventListener('popstate', () => {
+  closeModal();
+});
+
+// ✅ Accept disclaimer
+function acceptDisclaimer() {
+  localStorage.setItem('disclaimerAccepted', 'true');
+  document.getElementById('disclaimer-popup').style.display = 'none';
+  document.getElementById('main-content').style.display = 'block';
+  document.body.style.overflow = 'auto';
+}
