@@ -36,6 +36,9 @@ function displayList(items, containerId) {
 function showDetails(item) {
   currentItem = item;
   if (!item.media_type) item.media_type = item.title ? "movie" : "tv";
+  const type = item.media_type || (item.title ? "movie" : "tv");
+  const url = `${window.location.origin}/watch?type=${type}&id=${item.id}`;
+  window.history.pushState({item}, '', url); 
   document.getElementById('modal-title').textContent = item.title || item.name;
   document.getElementById('modal-description').textContent = item.overview || 'No description available.';
   document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round((item.vote_average || 0) / 2));
@@ -63,6 +66,8 @@ function changeServer() {
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('modal-video').src = '';
+  window.history.pushState({}, '', '/');
+  
 }
 
 function openSearchModal() {
@@ -185,5 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!accepted) {
     document.getElementById('disclaimer-popup').style.display = 'flex';
   }
+});
+ window.addEventListener('popstate', (event) => {
+  // Close modal on back
+  closeModal();
 });
 
