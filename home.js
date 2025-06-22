@@ -53,6 +53,10 @@ function showDetails(item) {
   window.history.pushState({item}, '', url);
   
   document.getElementById('modal').style.display = 'flex';
+
+  setTimeout(() => {
+    changeServer();
+  }, 150);
 }
 
 // ✅ Change video source based on dropdown
