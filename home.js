@@ -191,5 +191,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('disclaimer-popup').style.display = 'flex';
   }
 });
- 
+ window.addEventListener('DOMContentLoaded', async () => {
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type');
+  const id = params.get('id');
+
+  if (type && id) {
+    // Fetch movie or tv show data from TMDB
+    const res = await fetch(`${BASE_URL}/${type}/${id}?api_key=${API_KEY}`);
+    const item = await res.json();
+
+    // Add type if missing (important for video embed)
+    item.media_type = type;
+
+    // Show modal
+    showDetails(item);
+  }
+});
+
 
