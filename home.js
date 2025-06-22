@@ -177,12 +177,21 @@ init();
 function acceptDisclaimer() {
   localStorage.setItem('disclaimerAccepted', 'true');
   document.getElementById('disclaimer-popup').style.display = 'none';
+  document.getElementById('main-content').style.display = 'block';
+  document.body.style.overflow = 'auto';
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   const isAccepted = localStorage.getItem('disclaimerAccepted');
   const popup = document.getElementById('disclaimer-popup');
-  if (isAccepted === 'true' && popup) {
+  const main = document.getElementById('main-content');
+
+  if (isAccepted === 'true') {
     popup.style.display = 'none';
+    main.style.display = 'block';
+    document.body.style.overflow = 'auto';
+  } else {
+    main.style.display = 'none';
+    document.body.style.overflow = 'hidden';
   }
 });
