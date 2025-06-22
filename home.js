@@ -83,24 +83,49 @@ async function searchTMDB() {
     return;
   }
 
-  const res = await fetch(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`);
-  const data = await res.json();
-  const container = document.getElementById('search-results');
-  container.innerHTML = '';
+async function searchTMDB() {
+  const query = document.getElementById('search-input').value;
+  if (!query.trim()) {
+    document.getElementById('search-results').innerHTML = '';
+    return;
+  }
 
-  data.results.forEach(item => {
-    if (!item.poster_path) return;
-    const img = document.createElement('img');
-    img.src = `${IMG_URL}${item.poster_path}`;
-    img.alt = item.title || item.name;
-    img.onclick = () => {
-      closeSearchModal();
-      showDetails(item);
-    };
-    container.appendChild(img);
-  });
+  const res = await fetch(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`);
+  const data = await res.json();
+
+  const container = document.getElementById('search-results');
+  container.innerHTML = '';
+
+  data.results.forEach(item => {
+    if (!item.poster_path) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.style.width = '120px';
+    wrapper.style.textAlign = 'center';
+
+    const img = document.createElement('img');
+    img.src = `${IMG_URL}${item.poster_path}`;
+    img.alt = item.title || item.name;
+    img.style.width = '100%';
+    img.style.borderRadius = '5px';
+    img.style.cursor = 'pointer';
+    img.onclick = () => {
+      closeSearchModal();
+      showDetails(item);
+    };
+
+    const title = document.createElement('p');
+    title.textContent = item.title || item.name;
+    title.style.fontSize = '12px';
+    title.style.marginTop = '5px';
+    title.style.color = 'white';
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(title);
+    container.appendChild(wrapper);
+  });
 }
-
+  
 async function loadRecommended(movieId) {
   const res = await fetch(`${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}`);
   const data = await res.json();
