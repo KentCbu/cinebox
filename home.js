@@ -51,11 +51,7 @@ function showDetails(item) {
   const type = item.media_type;
   const url = `${window.location.origin}/watch?type=${type}&id=${item.id}`;
   window.history.pushState({item}, '', url);
-
-  document.getElementById('modal-title').textContent = item.title || item.name;
-  document.getElementById('modal-description').textContent = item.overview || 'No description available.';
-  document.getElementById('modal-rating').innerHTML = '★'.repeat(Math.round((item.vote_average || 0) / 2));
-  changeServer();
+  
   document.getElementById('modal').style.display = 'flex';
 }
 
