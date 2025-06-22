@@ -174,12 +174,18 @@ window.addEventListener('popstate', () => {
 
 // Init on load
 init();
-// Sa pinaka-una ng init() function:
-async function init() {
-  // Redirect to disclaimer if not accepted
-  if (!localStorage.getItem('disclaimerAccepted')) {
-    document.getElementById('disclaimer-modal').style.display = 'flex';
-    return; // Stop loading movies
+function acceptDisclaimer() {
+  localStorage.setItem('disclaimerAccepted', 'true');
+  document.getElementById('disclaimer-popup').style.display = 'none';
+}
+
+// Auto-hide disclaimer if already accepted
+window.addEventListener('DOMContentLoaded', () => {
+  const isAccepted = localStorage.getItem('disclaimerAccepted');
+  if (isAccepted === 'true') {
+    const popup = document.getElementById('disclaimer-popup');
+    if (popup) popup.style.display = 'none';
   }
-  // Rest of your code...
+});
+      
 }  
