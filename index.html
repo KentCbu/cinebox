@@ -4,83 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MobiPlex</title>
-  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="home.css" />
   <script defer src="home.js"></script>
 </head>
 <body>
-  <div id="disclaimer-popup" class="disclaimer-overlay" style="display: none;">
-  <div class="disclaimer-box">
-    <h2>Disclaimer</h2>
-    <p>
-      This website does not host any files on its server. All content displayed on this site is provided by third-party sites and services. We do not control or endorse any content, products, or services provided by these sites. Any reliance on the content or services provided by third-party sites is done at your own risk. We recommend that you read the terms and conditions and privacy policies of any third-party site that you visit. If you have any questions or concerns about the content hosted by third-party sites, please contact the site owner or administrator directly.
-    </p>
-    <button onclick="acceptDisclaimer()">I Understand</button>
-  </div>
- </div>
-  
+
+  <!-- ✅ NAVBAR -->
   <div class="navbar">
-    <div class="logo-text">CineBox</div>
+    <a href="index.html" class="logo-text">MobiPlex</a>
     <div class="nav-links">
       <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
     </div>
   </div>
 
-  <div class="slider" id="slider"></div>
+  <!-- ✅ BANNER -->
+  <div class="banner" id="banner">
+    <h1 id="banner-title"></h1>
+  </div>
 
-  <div class="row"><h2>Trending Movies</h2><div class="list" id="movies-list"></div></div>
-  <div class="row"><h2>Trending TV Shows</h2><div class="list" id="tvshows-list"></div></div>
-  <div class="row"><h2>Trending Anime</h2><div class="list" id="anime-list"></div></div>
+  <!-- ✅ TRENDING MOVIES -->
+  <div class="row">
+    <h2>Trending Movies</h2>
+    <div class="list" id="movies-list"></div>
+  </div>
 
+  <!-- ✅ TRENDING TV -->
+  <div class="row">
+    <h2>Trending TV Shows</h2>
+    <div class="list" id="tvshows-list"></div>
+  </div>
+
+  <!-- ✅ TRENDING ANIME -->
+  <div class="row">
+    <h2>Trending Anime</h2>
+    <div class="list" id="anime-list"></div>
+  </div>
+
+  <!-- ✅ MODAL PLAYER -->
   <div class="modal" id="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
-      <div class="modal-body">
-        <button onclick="closeModal()" class="close-btn">Close</button>
+      <div class="modal-text">
+        <h2 id="modal-title"></h2>
+        <div class="stars" id="modal-rating"></div>
+        <p id="modal-description"></p>
 
-        <div class="server-selector">
-          <label for="server">Change Server:</label>
-          <select id="server" onchange="changeServer()">
-            <option value="vidsrc.cc">Vidsrc.cc</option>
-            <option value="vidsrc.me">Vidsrc.me</option>
-            <option value="videasy">Server 4</option>
-          </select>
-        </div>
+        <label for="server">Choose Server:</label>
+        <select id="server" onchange="changeServer()">
+          <option value="vidsrc.cc">Server 1</option>
+          <option value="pstream">Server 2</option>
+          <option value="2embed">Server 3</option>
+          <option value="videasy">Server 4</option>
+        </select>
 
-        <div class="warning-box">
-          ⚠️ If video doesn't play, try changing to another server.
-        </div>
-
-        <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
-
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-        </div>
-
-        <div class="recommended-section">
-          <h3>Recommended Movies</h3>
-          <div class="list" id="recommended-list"></div>
-        </div>
+        <iframe id="modal-video" width="100%" height="350" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
   </div>
 
+  <!-- ✅ SEARCH MODAL -->
   <div class="search-modal" id="search-modal">
     <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
     <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
     <div class="results" id="search-results"></div>
   </div>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 MobiPlex. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Disclaimer</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
