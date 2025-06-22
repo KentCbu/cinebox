@@ -54,9 +54,10 @@ function changeServer() {
 
   if (server === "vidsrc.cc") {
     embedURL = `https://vidsrc.cc/v2/embed/${type}/${currentItem.id}`;
-  else if (server === "2embed") {
-   embedURL = `https://2embed.cc/embed/${currentItem.id}`;
-  } else if (server === "vidsrc.me") {
+   else if (server === "2embed") {
+    embedURL = `https://2embed.cc/embed/${currentItem.id}`;
+  } 
+   else if (server === "vidsrc.me") {
     embedURL = `https://vidsrc.net/embed/${type}/?tmdb=${currentItem.id}`;
   }
 
