@@ -193,3 +193,44 @@ body {
     width: 100px;
   }
 }
+/* ===== YOUR EXISTING CSS (nav, banner, rows, etc.) ===== */
+/* ... all your current styles ... */
+
+/* ===== DISCLAIMER MODAL (ADD AT THE VERY END) ===== */
+#disclaimer-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Highest z-index to cover everything */
+}
+
+.disclaimer-content {
+  background: #222;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeIn 0.3s; /* Optional animation */
+}
+
+.disclaimer-content button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Optional animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
