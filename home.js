@@ -159,7 +159,7 @@ function acceptDisclaimer() {
   localStorage.setItem('disclaimerAccepted', 'true');
 }
 
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const accepted = localStorage.getItem('disclaimerAccepted');
   if (!accepted) {
     document.getElementById('disclaimer-popup').style.display = 'flex';
