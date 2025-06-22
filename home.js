@@ -108,8 +108,11 @@ async function searchTMDB() {
     };
 
     const title = document.createElement('p');
-    title.textContent = item.title || item.name;
-    title.style.fontSize = '12px';
+    const name = item.title || item.name;
+    const date = item.release_date || item.first_air_date || '';
+    const year = date ? ` (${new Date(date).getFullYear()})` : '';
+    title.textContent = name + year;
+    title.style.fontSize = '12px';
     title.style.marginTop = '5px';
     title.style.color = 'white';
 
