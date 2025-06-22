@@ -153,4 +153,16 @@ async function loadSlider() {
   setInterval(updateSlider, 5000);
 }
 loadSlider();
-                       
+ // === Disclaimer Logic ===
+function acceptDisclaimer() {
+  document.getElementById('disclaimer-popup').style.display = 'none';
+  localStorage.setItem('disclaimerAccepted', 'true');
+}
+
+window.addEventListener('load', () => {
+  const accepted = localStorage.getItem('disclaimerAccepted');
+  if (!accepted) {
+    document.getElementById('disclaimer-popup').style.display = 'flex';
+  }
+});
+
