@@ -77,13 +77,6 @@ function closeSearchModal() {
 }
 
 async function searchTMDB() {
-  const query = document.getElementById('search-input').value;
-  if (!query.trim()) {
-    document.getElementById('search-results').innerHTML = '';
-    return;
-  }
-
-async function searchTMDB() {
   const query = document.getElementById('search-input').value;
   if (!query.trim()) {
     document.getElementById('search-results').innerHTML = '';
