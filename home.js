@@ -61,7 +61,9 @@ function changeServer() {
   const type = currentItem.media_type === "movie" ? "movie" : "tv";
   let embedURL = "";
 
-  if (server === "vidsrc.cc") {
+  if (server === "vidsrc.xyz") {
+    embedURL = `https://vidsrc.xyz/embed/${type}/${currentItem.id}`;
+  } else if (server === "vidsrc.cc") {
     embedURL = `https://vidsrc.cc/v2/embed/${type}/${currentItem.id}`;
   } else if (server === "pstream") {
     embedURL = `https://pstream.to/e/${currentItem.id}`;
