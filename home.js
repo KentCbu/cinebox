@@ -174,4 +174,12 @@ window.addEventListener('popstate', () => {
 
 // Init on load
 init();
-  
+// Sa pinaka-una ng init() function:
+async function init() {
+  // Redirect to disclaimer if not accepted
+  if (!localStorage.getItem('disclaimerAccepted')) {
+    document.getElementById('disclaimer-modal').style.display = 'flex';
+    return; // Stop loading movies
+  }
+  // Rest of your code...
+}  
