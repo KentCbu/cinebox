@@ -179,13 +179,10 @@ function acceptDisclaimer() {
   document.getElementById('disclaimer-popup').style.display = 'none';
 }
 
-// Auto-hide disclaimer if already accepted
 window.addEventListener('DOMContentLoaded', () => {
   const isAccepted = localStorage.getItem('disclaimerAccepted');
-  if (isAccepted === 'true') {
-    const popup = document.getElementById('disclaimer-popup');
-    if (popup) popup.style.display = 'none';
+  const popup = document.getElementById('disclaimer-popup');
+  if (isAccepted === 'true' && popup) {
+    popup.style.display = 'none';
   }
 });
-      
-}  
