@@ -158,109 +158,87 @@ body {
 .disclaimer-box button:hover {
   background: darkred;
 }
-/* Banner Slider - ORIGINAL 2:3 RATIO */
 .banner-slider {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin: 2rem auto;
-  max-width: 1200px;
-  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #000;
 }
 
 .poster-box {
-  position: relative;
-  width: 300px;   /* Original 2:3 width */
-  height: 450px;  /* Original 2:3 height */
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, #222, #000); /* Gradient fallback */
-}
-
-.poster-box:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced hover effect */
+  position: relative;
+  aspect-ratio: 2 / 3; /* or 3 / 4 */
+  height: 90vh;
+  max-width: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
 }
 
 .poster-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.3s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
-/* Enhanced Overlay */
 .overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
-  color: white;
-  padding: 1.8rem;
-  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  color: white;
+  text-align: center;
+  z-index: 2;
 }
 
 .overlay p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #FFD700;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 13px;
+  margin-bottom: 5px;
 }
 
 .overlay h2 {
-  margin: 0.8rem 0 0;
-  font-size: 1.2rem;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* Show more lines */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 14px;
+  font-style: italic;
+  color: #ccc;
+  margin: 0;
 }
 
-/* Navigation Buttons */
+/* ✅ Arrows inside poster */
 .nav {
-  background: rgba(20, 20, 20, 0.9);
-  color: white;
-  border: 2px solid rgba(255, 215, 0, 0.3);
-  padding: 1rem;
-  cursor: pointer;
-  font-size: 1.5rem;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  z-index: 10;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 3;
+  cursor: pointer;
 }
 
-.nav:hover {
-  background: rgba(255, 215, 0, 0.9);
-  transform: scale(1.1);
-}
+.nav.prev { left: 10px; }
+.nav.next { right: 10px; }
 
-/* Responsive Design */
+/* Mobile Responsive */
 @media (max-width: 768px) {
-  .poster-box {
-    width: 250px;
-    height: 375px;
-  }
-  .overlay {
-    padding: 1.2rem;
-  }
-}
+  .poster-box {
+    height: 80vh;
+    max-width: 90vw;
+  }
 
-@media (max-width: 576px) {
-  .poster-box {
-    width: 200px;
-    height: 300px;
+  .overlay p, .overlay h2 {
+    font-size: 12px;
+  }
+
+  .nav {
+    font-size: 20px;
+    padding: 8px;
+  }
   }
-  .overlay h2 {
-    -webkit-line-clamp: 2; /* Fewer lines on mobile */
-  }
-}
