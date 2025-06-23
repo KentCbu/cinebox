@@ -178,12 +178,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 300px;
+  height: 450px; 
 }
 
 .slide img {
   height: 90vh;
   aspect-ratio: 3/4;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
 }
