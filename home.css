@@ -158,20 +158,26 @@ body {
 .disclaimer-box button:hover {
   background: darkred;
 }
+/* Comprehensive fix */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  padding: 10px 15px;
+}
+
 .banner-slider {
-  margin-top: -10px; /* Negative margin to pull up the banner */
-  padding-top: 0; /* Remove any padding */
+  margin-top: -5px;
+  padding: 0;
+  width: 100%;
 }
 
 .poster-box {
-  position: relative;
-  width: 100%;
+  margin: 0 auto;
+  width: 95%;
   max-width: 400px;
-  aspect-ratio: 2/3;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #000;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
 }
 
 .poster-box img {
