@@ -234,15 +234,16 @@ body, html {
 }
 
 .overlay p {
-  font-size: 11px;
-  margin-bottom: 4px;
+  font-size: 12px;
+  margin: 0;
+  font-weight: bold;
+  color: #ffd700; /* Gold color para sa rating */
 }
 
 .overlay h2 {
-  font-size: 12px;
-  font-style: italic;
-  color: #ccc;
-  margin: 0;
+  font-size: 11px;
+  margin-top: 3px;
+  color: #fff;
 }
 
 /* Navigation arrows */
