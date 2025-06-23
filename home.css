@@ -183,7 +183,7 @@ body {
 .poster-box img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Keep contain for full image visibility */
+  object-fit: cover; /* Keep contain for full image visibility */
   display: block;
 }
 
