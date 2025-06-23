@@ -161,38 +161,48 @@ body {
 .banner {
   width: 100%;
   height: 100vh;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111;
 }
 
-.banner img {
+.poster-card {
+  position: relative;
+  width: 300px; /* adjust as needed */
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.poster-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.banner-overlay-text {
+.poster-overlay {
   position: absolute;
-  bottom: 30px;
-  left: 30px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   color: white;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 15px 20px;
-  border-radius: 10px;
-  max-width: 70%;
-  font-family: Arial, sans-serif;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
 #banner-meta {
   font-size: 14px;
-  color: #fff;
   margin-bottom: 5px;
+  color: #fff;
 }
 
 #banner-tagline {
-  font-size: 18px;
+  font-size: 16px;
   font-style: italic;
   color: #ccc;
   margin: 0;
 }
-
