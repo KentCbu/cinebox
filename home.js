@@ -24,35 +24,53 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
-// ✅ Carousel banner
-async function loadBannerCarousel() {
+// ✅ Hero slider
+let sliderIndex = 0;
+let sliderItems = [];
+
+async function loadSlider() {
   const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
   const data = await res.json();
-  const carousel = document.getElementById('carousel-container');
-  carousel.innerHTML = '';
+  sliderItems = data.results.slice(0, 5);
 
-  data.results.slice(0, 10).forEach(item => {
-    const poster = item.poster_path ? `${IMG_URL}${item.poster_path}` : '';
+  const slider = document.getElementById("slider");
+  slider.innerHTML = "";
 
-    const rating = item.vote_average ? item.vote_average.toFixed(1) : "N/A";
+  sliderItems.forEach(item => {
+    const slide = document.createElement("div");
+    slide.className = "slide";
+
+    const rating = item.vote_average?.toFixed(1) || "N/A";
     const type = item.media_type === "tv" ? "TV Show" : "Movie";
-    const date = item.release_date || item.first_air_date || '';
-    const year = date ? new Date(date).getFullYear() : "N/A";
-    const summary = item.tagline || item.overview?.split('.')[0] || "No summary.";
+    const year = (item.release_date || item.first_air_date || "").slice(0, 4);
+    const summary = item.tagline || item.overview?.split(".")[0] || "No summary.";
 
-    const div = document.createElement('div');
-    div.className = 'poster-slide';
-    div.onclick = () => showDetails(item); // optional modal on click
-
-    div.innerHTML = `
-      <img src="${poster}" alt="${item.title || item.name}" />
+    slide.innerHTML = `
+      <img src="${IMG_URL}${item.poster_path}" alt="${item.title}" />
       <div class="overlay">
         <p>⭐ ${rating} • ${type} • ${year}</p>
-        <h4>"${summary}"</h4>
+        <h2>"${summary}"</h2>
       </div>
     `;
-    carousel.appendChild(div);
+    slider.appendChild(slide);
   });
+
+  updateSlider(); // show first slide
+}
+
+function updateSlider() {
+  const slider = document.getElementById("slider");
+  slider.style.transform = `translateX(-${sliderIndex * 100}%)`;
+}
+
+function nextSlide() {
+  sliderIndex = (sliderIndex + 1) % sliderItems.length;
+  updateSlider();
+}
+
+function prevSlide() {
+  sliderIndex = (sliderIndex - 1 + sliderItems.length) % sliderItems.length;
+  updateSlider();
 }
 
 // ✅ Display movie list
@@ -173,7 +191,7 @@ async function init() {
   const tvShows = await fetchTrending('tv');
   const anime = await fetchTrendingAnime();
 
-  loadBannerCarousel();
+  loadSlider();
   displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
