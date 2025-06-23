@@ -158,62 +158,64 @@ body {
 .disclaimer-box button:hover {
   background: darkred;
 }
+/* ===== BANNER SLIDER CONTAINER ===== */
 .banner-slider {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 0 20px;
-  background: #000;
+  display: flex;
+  justify-content: flex-start; /* Changed from center for scrolling */
+  align-items: center;
+  height: 60vh; /* Reduced from 100vh */
+  padding: 20px;
+  background: #000;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scroll-snap-type: x mandatory;
+  gap: 20px; /* Space between posters */
+  white-space: nowrap; /* Keep posters in one line */
 }
 
+/* ===== POSTER BOX ===== */
 .poster-box {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  width: 300px;
-  max-width: 90%;
-  height: auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-  background: #000;
+  position: relative;
+  width: 150px; /* Ideal mobile size */
+  height: 225px; /* 3:4 aspect ratio */
+  flex-shrink: 0; /* Prevent shrinking */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  scroll-snap-align: center; /* For smooth scrolling */
 }
 
+/* Larger posters on desktop */
+@media (min-width: 768px) {
+  .poster-box {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+/* ===== POSTER IMAGE ===== */
 .poster-box img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fill container while maintaining aspect ratio */
+  transition: transform 0.3s ease;
 }
 
+.poster-box:hover img {
+  transform: scale(1.05); /* Subtle zoom effect */
+}
+
+/* ===== OVERLAY TEXT ===== */
 .overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  text-align: center;
-  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  text-align: center;
+  color: white;
 }
 
-.overlay p {
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-
-.overlay h2 {
-  font-size: 13px;
-  font-style: italic;
-  margin: 0;
-  color: #ccc;
-}
-
-.nav {
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  font-size: 24px;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  margin: 0 15px;
+/* Hide scrollbar (optional) */
+.banner-slider::-webkit-scrollbar {
+  display: none;
 }
