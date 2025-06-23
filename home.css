@@ -171,10 +171,8 @@ body {
 }
 
 .banner-slider {
-  margin-top: -5px; /* Pulls up the banner */
-  padding: 0;
-  width: 100%;
-  position: relative;
+  .banner-slider {
+  line-height: 0; /* Fixes potential whitespace issues */
 }
 
 .poster-box {
