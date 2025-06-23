@@ -24,17 +24,36 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
-// ✅ Hero slider
+// ✅ Display banner
+function updateSlider() {
+  const item = sliderItems[sliderIndex];
+  const container = document.getElementById("active-slide");
+
+  if (!item) {
+    console.warn("No item found for index:", sliderIndex);
+    return;
+  }
+
+  container.innerHTML = `
+    <img src="${IMG_URL}${item.poster_path}" alt="${item.title || item.name}" />
+    <div class="overlay">
+      <p>⭐ ${item.vote_average?.toFixed(1) || "N/A"} • ${item.media_type === "tv" ? "TV Show" : "Movie"} • ${(item.release_date || item.first_air_date || "").slice(0, 4)}</p>
+      <h2>"${item.tagline || item.overview?.split('.')[0] || "No summary."}"</h2>
+    </div>
+  `;
+}
 
 // ✅ Display movie list
-async function loadSlider() {
-  const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
-  const data = await res.json();
-
-  console.log("Slider Data:", data.results); // ✅ log result
-
-  sliderItems = data.results.slice(0, 5);
-  updateSlider();
+function displayList(items, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  items.forEach(item => {
+    const img = document.createElement('img');
+    img.src = `${IMG_URL}${item.poster_path}`;
+    img.alt = item.title || item.name;
+    img.onclick = () => showDetails(item);
+    container.appendChild(img);
+  });
 }
 
 // ✅ Show movie details in modal
