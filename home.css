@@ -162,22 +162,29 @@ body {
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .navbar {
   padding: 10px 15px;
+  margin-bottom: 0 !important;
 }
 
 .banner-slider {
-  margin-top: -5px;
+  margin-top: -5px; /* Pulls up the banner */
   padding: 0;
   width: 100%;
+  position: relative;
 }
 
 .poster-box {
-  margin: 0 auto;
   width: 95%;
   max-width: 400px;
+  margin: 0 auto;
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
 }
 
 .poster-box img {
@@ -248,13 +255,15 @@ body {
 .nav.next { right: 5px; } /* Closer to edge */
 
 /* Mobile Responsive Adjustments */
-@media (max-width: 480px) {
-  .poster-box {
-    width: 98vw; /* Use more screen width */
-    max-height: 75vh; /* Slightly smaller */
-    border-radius: 6px; /* Smaller radius */
+media (max-width: 768px) {
+  .banner-slider {
+    margin-top: -8px; /* Stronger pull for mobile */
   }
-  
+  .poster-box {
+    width: 98%;
+    border-radius: 6px;
+  }
+}
   .overlay {
     padding: 10px; /* Even smaller padding */
   }
