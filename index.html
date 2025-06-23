@@ -31,13 +31,15 @@
     </div>
 
   <div class="banner-slider">
-  <div class="poster-box" id="active-slide">
-    <!-- Arrows now INSIDE the poster-box -->
-    <button class="nav prev">❮</button>
-    <button class="nav next">❯</button>
-    
-    <!-- Content will be injected by JS -->
-  </div>
+  <div class="poster-box" id="active-slide">
+    <button class="nav prev" onclick="prevSlide()">❮</button>
+    <img id="poster-img" src="" alt="Poster" />
+    <div class="overlay">
+      <p id="poster-meta"></p>
+      <h2 id="poster-summary"></h2>
+    </div>
+    <button class="nav next" onclick="nextSlide()">❯</button>
+  </div>
   </div>
       
     <div class="row"><h2>Trending Movies</h2><div class="list" id="movies-list"></div></div>
