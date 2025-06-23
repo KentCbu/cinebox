@@ -228,48 +228,4 @@ body {
   cursor: pointer;
   font-size: 1.5rem;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.nav:hover {
-  background: rgba(255, 215, 0, 0.8);
-  color: #000;
-}
-
-.nav:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .banner-slider {
-    gap: 1rem;
-  }
-  
-  .poster-box {
-    width: 250px;
-    height: 375px;
-  }
-  
-  .overlay {
-    padding: 1rem;
-  }
-  
-  .overlay h2 {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .poster-box {
-    width: 200px;
-    height: 300px;
-  }
-  
-  .nav {
-    padding: 0.6rem 0.8rem;
-    font-size: 1.2rem;
-  }
-}
+  transition: all 0.3
