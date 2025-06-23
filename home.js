@@ -47,7 +47,6 @@ function updateSlider() {
   const summary = item.tagline || item.overview?.split('.')[0] || 'No summary.';
 
   document.getElementById("poster-meta").textContent = `⭐ ${rating} • ${type} • ${year}`;
-  document.getElementById("poster-summary").textContent = `"${summary}"`;
 }
 
 function nextSlide() {
