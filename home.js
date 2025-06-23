@@ -24,22 +24,6 @@ async function fetchTrendingAnime() {
   return allResults;
 }
 
-// ✅ Display banner
-function displayBanner(item) {
-  document.getElementById('banner-poster').src = `${IMG_URL}${item.poster_path}`;
-
-  const rating = item.vote_average ? item.vote_average.toFixed(1) : "N/A";
-  const type = item.media_type === "tv" ? "TV Show" : "Movie";
-  const date = item.release_date || item.first_air_date || '';
-  const year = date ? new Date(date).getFullYear() : "N/A";
-
-  const meta = `⭐ ${rating} • ${type} • ${year}`;
-  const summary = item.tagline || item.overview?.split('.')[0] || "No summary available.";
-
-  document.getElementById('banner-meta').textContent = meta;
-  document.getElementById('banner-tagline').textContent = `"${summary}"`;
-}
-
 // ✅ Carousel banner
 async function loadBannerCarousel() {
   const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
