@@ -26,21 +26,6 @@ body {
   border: none;
 }
 
-/* Banner */
-.banner {
-  height: 50vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.banner h1 {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 15px 30px;
-  font-size: 2rem;
-}
-
 /* List Rows */
 .row {
   margin: 20px;
@@ -172,4 +157,46 @@ body {
 }
 .disclaimer-box button:hover {
   background: darkred;
+}
+ .banner {
+  height: auto;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  padding: 20px 10px;
+}
+
+.banner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #222;
+  padding: 15px;
+  border-radius: 10px;
+  width: 180px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  text-align: center;
+}
+
+.banner-card img {
+  width: 100%;
+  aspect-ratio: 9/16;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.banner-info h2 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.banner-info .stars {
+  color: gold;
+  font-size: 14px;
+}
+
+.banner-info p {
+  color: #ccc;
+  font-size: 13px;
 }
