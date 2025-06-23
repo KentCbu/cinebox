@@ -159,59 +159,65 @@ body {
   background: darkred;
 }
 .banner-slider {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #000;
-  gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
 }
 
 .poster-box {
-  position: relative;
-  width: 300px;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  position: relative;
+  aspect-ratio: 3 / 4;
+  height: 90vh;
+  max-height: 100vh;
+  max-width: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  background: #000;
 }
 
 .poster-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  text-align: center;
-  color: #fff;
-  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  padding: 12px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .overlay p {
-  font-size: 13px;
-  margin: 0 0 5px;
+  font-size: 13px;
+  margin: 0 0 4px;
 }
 
 .overlay h2 {
-  font-size: 13px;
-  font-style: italic;
-  margin: 0;
-  color: #ccc;
+  font-size: 13px;
+  font-style: italic;
+  margin: 0;
+  color: #ccc;
 }
 
 .nav {
-  background: rgba(0,0,0,0.6);
-  color: white;
-  font-size: 24px;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s;
 }
+
+.nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+                   }
