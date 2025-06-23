@@ -26,11 +26,9 @@ async function fetchTrendingAnime() {
 
 // ✅ Display banner
 function displayBanner(item) {
-  document.getElementById('banner').style.backgroundImage = `url(${IMG_URL}${item.backdrop_path || item.poster_path})`;
+  document.getElementById('banner-poster').src = `${IMG_URL}${item.poster_path}`;
   document.getElementById('banner-title').textContent = item.title || item.name;
-
-  const vote = item.vote_average || 0;
-  document.getElementById('banner-rating').innerHTML = '★'.repeat(Math.round(vote / 2));
+  document.getElementById('banner-rating').innerHTML = '★'.repeat(Math.round((item.vote_average || 0) / 2));
 
   const date = item.release_date || item.first_air_date || '';
   const year = date ? new Date(date).getFullYear() : 'N/A';
