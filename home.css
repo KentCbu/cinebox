@@ -159,42 +159,40 @@ body {
   background: darkred;
 }
 .banner-slider {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  padding: 0 20px;
   background: #000;
 }
 
 .poster-box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  position: relative;
+  aspect-ratio: 3 / 4;
+  width: 300px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  background: #000;
 }
 
 .poster-box img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.8);
+  height: auto;
+  object-fit: contain;
 }
 
 .overlay {
   position: absolute;
   bottom: 0;
-  left: 0;
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  color: white;
   text-align: center;
-  z-index: 2;
+  color: white;
 }
 
 .overlay p {
@@ -203,46 +201,19 @@ body {
 }
 
 .overlay h2 {
-  font-size: 14px;
+  font-size: 13px;
   font-style: italic;
-  color: #ccc;
   margin: 0;
+  color: #ccc;
 }
 
-/* Arrow buttons */
 .nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.6);
   color: white;
-  font-size: 28px;
+  font-size: 24px;
   border: none;
-  padding: 12px;
+  padding: 10px;
   cursor: pointer;
   border-radius: 50%;
-  z-index: 3;
-}
-
-.nav.prev { left: 10px; }
-.nav.next { right: 10px; }
-
-/* ✅ Mobile tweaks */
-@media (max-width: 768px) {
-  .overlay {
-    padding: 15px;
-  }
-
-  .overlay p {
-    font-size: 12px;
-  }
-
-  .overlay h2 {
-    font-size: 13px;
-  }
-
-  .nav {
-    font-size: 24px;
-    padding: 10px;
-  }
+  margin: 0 15px;
 }
