@@ -164,18 +164,35 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .banner img {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
 }
-.poster-details {
+
+.banner-overlay-text {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 30px;
+  left: 30px;
   color: white;
-  background: rgba(0,0,0,0.5);
-  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px 20px;
   border-radius: 10px;
+  max-width: 70%;
+  font-family: Arial, sans-serif;
 }
+
+#banner-meta {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+#banner-tagline {
+  font-size: 18px;
+  font-style: italic;
+  color: #ccc;
+  margin: 0;
+}
+
