@@ -158,74 +158,66 @@ body {
 .disclaimer-box button:hover {
   background: darkred;
 }
-/* Banner Slider Styles */
 .banner-slider {
-  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 2rem;
-  margin: 2rem auto;
-  max-width: 1200px;
-  padding: 0 1rem;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
 }
 
 .poster-box {
   position: relative;
-  width: 300px;
-  height: 450px;
-  border-radius: 10px;
+  aspect-ratio: 3 / 4;
+  height: 90vh;
+  max-height: 100vh;
+  max-width: 400px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.poster-box:hover {
-  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  background: #000;
 }
 
 .poster-box img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
+  object-fit: contain;
 }
 
 .overlay {
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   color: white;
-  padding: 1.5rem;
+  padding: 12px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .overlay p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #ffd700;
-  font-weight: bold;
+  font-size: 13px;
+  margin: 0 0 4px;
 }
 
 .overlay h2 {
-  margin: 0.5rem 0 0;
-  font-size: 1.1rem;
-  font-weight: normal;
+  font-size: 13px;
   font-style: italic;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  margin: 0;
+  color: #ccc;
 }
 
 .nav {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   color: white;
+  font-size: 24px;
   border: none;
-  padding: 0.8rem 1rem;
+  padding: 10px;
   cursor: pointer;
-  font-size: 1.5rem;
   border-radius: 50%;
-  transition: all 0.3
+  transition: background 0.3s;
+}
+
+.nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
