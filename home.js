@@ -28,40 +28,28 @@ let sliderIndex = 0;
 let sliderItems = [];
 
 async function loadSlider() {
-  try {
-    const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
-    if (!res.ok) throw new Error('Failed to fetch slider data');
-    const data = await res.json();
-    sliderItems = data.results.filter(item => item.poster_path).slice(0, 5);
-    updateSlider();
-    
-    // Auto-slide every 5 seconds (optional)
-    setInterval(nextSlide, 5000);
-  } catch (error) {
-    console.error("Slider error:", error);
-    document.getElementById("active-slide").innerHTML = 
-      '<p class="error">Failed to load movies. Try refreshing.</p>';
-  }
+  const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
+  const data = await res.json();
+  sliderItems = data.results.slice(0, 5);
+  updateSlider();
 }
 
 function updateSlider() {
-  const container = document.getElementById("active-slide");
-  if (!sliderItems.length) return;
-
   const item = sliderItems[sliderIndex];
+  const container = document.getElementById("active-slide");
+
+  if (!item || !item.poster_path) return;
+
   const rating = item.vote_average?.toFixed(1) || "N/A";
   const type = item.media_type === "tv" ? "TV Show" : "Movie";
   const year = (item.release_date || item.first_air_date || "").slice(0, 4);
   const summary = item.tagline || item.overview?.split('.')[0] || 'No summary.';
 
   container.innerHTML = `
-    <img src="${IMG_URL}${item.poster_path}" 
-         alt="${item.title || item.name}" 
-         loading="lazy" />
+    <img src="${IMG_URL}${item.poster_path}" alt="${item.title || item.name}" />
     <div class="overlay">
       <p>⭐ ${rating} • ${type} • ${year}</p>
-      <h2>${item.title || item.name}</h2>
-      <p class="summary">"${summary}"</p>
+      <h2>"${summary}"</h2>
     </div>
   `;
 }
@@ -69,30 +57,15 @@ function updateSlider() {
 function nextSlide() {
   sliderIndex = (sliderIndex + 1) % sliderItems.length;
   updateSlider();
-  resetAutoSlide(); // Optional for auto-slide
 }
 
 function prevSlide() {
   sliderIndex = (sliderIndex - 1 + sliderItems.length) % sliderItems.length;
   updateSlider();
-  resetAutoSlide(); // Optional for auto-slide
 }
 
-// Optional auto-slide controls
-let slideInterval;
-function startAutoSlide() {
-  slideInterval = setInterval(nextSlide, 5000);
-}
-function resetAutoSlide() {
-  clearInterval(slideInterval);
-  startAutoSlide();
-}
+loadSlider();
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', () => {
-  loadSlider();
-  startAutoSlide(); // Optional
-});
 
 // ✅ Display movie list
 function displayList(items, containerId) {
