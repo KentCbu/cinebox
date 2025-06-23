@@ -194,7 +194,7 @@ body, html {
 
 /* Poster box */
 .poster-box {
-  width: 300%;
+  width: 150%;
   margin: 0;
   aspect-ratio: 9/16;
   border-radius: 8px;
