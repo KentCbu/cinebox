@@ -165,23 +165,24 @@ body {
   height: 100vh;
   background: #000;
 }
-
 .poster-box {
-  position: relative;
-  aspect-ratio: 2 / 3; /* or 3 / 4 */
-  height: 90vh;
-  max-width: 600px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #000;
-  box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+  position: relative;
+  aspect-ratio: 2 / 3;
+  width: 90vw;
+  max-width: 500px;
+  max-height: 80vh;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+  margin: 0 auto;
 }
 
 .poster-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .overlay {
