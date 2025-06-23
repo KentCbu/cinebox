@@ -159,12 +159,8 @@ body {
   background: darkred;
 }
 .banner-slider {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 10px; /* Space below navbar */
-  padding: 0 10px;
-  box-sizing: border-box;
+  margin-top: -10px; /* Negative margin to pull up the banner */
+  padding-top: 0; /* Remove any padding */
 }
 
 .poster-box {
