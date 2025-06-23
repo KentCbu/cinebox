@@ -29,48 +29,38 @@ let sliderIndex = 0;
 let sliderItems = [];
 
 async function loadSlider() {
-  const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
-  const data = await res.json();
-  sliderItems = data.results.slice(0, 5);
-
-  const slider = document.getElementById("slider");
-  slider.innerHTML = "";
-
-  sliderItems.forEach(item => {
-    const slide = document.createElement("div");
-    slide.className = "slide";
-
-    const rating = item.vote_average?.toFixed(1) || "N/A";
-    const type = item.media_type === "tv" ? "TV Show" : "Movie";
-    const year = (item.release_date || item.first_air_date || "").slice(0, 4);
-    const summary = item.tagline || item.overview?.split(".")[0] || "No summary.";
-
-    slide.innerHTML = `
-      <img src="${IMG_URL}${item.poster_path}" alt="${item.title}" />
-      <div class="overlay">
-        <p>⭐ ${rating} • ${type} • ${year}</p>
-        <h2>"${summary}"</h2>
-      </div>
-    `;
-    slider.appendChild(slide);
-  });
-
-  updateSlider(); // show first slide
+  const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
+  const data = await res.json();
+  sliderItems = data.results.slice(0, 5);
+  updateSlider();
 }
 
 function updateSlider() {
-  const slider = document.getElementById("slider");
-  slider.style.transform = `translateX(-${sliderIndex * 100}%)`;
+  const item = sliderItems[sliderIndex];
+  const container = document.getElementById("active-slide");
+
+  const rating = item.vote_average?.toFixed(1) || "N/A";
+  const type = item.media_type === "tv" ? "TV Show" : "Movie";
+  const year = (item.release_date || item.first_air_date || "").slice(0, 4);
+  const summary = item.tagline || item.overview?.split(".")[0] || "No summary.";
+
+  container.innerHTML = `
+    <img src="${IMG_URL}${item.poster_path}" alt="${item.title || item.name}" />
+    <div class="overlay">
+      <p>⭐ ${rating} • ${type} • ${year}</p>
+      <h2>"${summary}"</h2>
+    </div>
+  `;
 }
 
 function nextSlide() {
-  sliderIndex = (sliderIndex + 1) % sliderItems.length;
-  updateSlider();
+  sliderIndex = (sliderIndex + 1) % sliderItems.length;
+  updateSlider();
 }
 
 function prevSlide() {
-  sliderIndex = (sliderIndex - 1 + sliderItems.length) % sliderItems.length;
-  updateSlider();
+  sliderIndex = (sliderIndex - 1 + sliderItems.length) % sliderItems.length;
+  updateSlider();
 }
 
 // ✅ Display movie list
