@@ -160,31 +160,43 @@ body {
 }
 /* Comprehensive fix */
 body {
-  margin: 0;
+ margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
+#main-content {
+  display: flex !important;
+  flex-direction: column;
+  gap: 20px; /* Space between sections */
+  padding: 0 15px; /* Equal side padding */
+  box-sizing: border-box;
+}
 .navbar {
   padding: 10px 15px;
   margin-bottom: 0 !important;
 }
 
 .banner-slider {
-  .banner-slider {
-  line-height: 0; /* Fixes potential whitespace issues */
+  margin: 10px auto 0; /* 10px top, auto sides, 0 bottom */
+  width: calc(100% - 30px); /* Account for padding */
+  max-width: 400px;
+  position: relative;
 }
 
 .poster-box {
-  width: 95%;
-  max-width: 400px;
-  margin: 0 auto;
-  aspect-ratio: 2/3;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    width: 100%;
+  margin: 0;
+}
+.row {
+  margin-top: 30px; /* Ensure space below banner */
+  padding: 0 5px; /* Equal side padding */
 }
 
+.row h2 {
+  margin-bottom: 15px; /* Space below headings */
+} 
 .poster-box img {
   width: 100%;
   height: 100%;
@@ -253,10 +265,21 @@ body {
 .nav.next { right: 5px; } /* Closer to edge */
 
 /* Mobile Responsive Adjustments */
-media (max-width: 768px) {
-  .banner-slider {
-    margin-top: -8px; /* Stronger pull for mobile */
+@media (max-width: 768px) {
+  #main-content {
+    padding: 0 10px;
+    gap: 15px;
   }
+  
+  .banner-slider {
+    width: calc(100% - 20px);
+    margin-top: 8px;
+  }
+  
+  .row {
+    margin-top: 20px;
+  }
+}
   .poster-box {
     width: 98%;
     border-radius: 6px;
