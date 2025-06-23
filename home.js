@@ -25,55 +25,16 @@ async function fetchTrendingAnime() {
 }
 
 // ✅ Hero slider
-let sliderIndex = 0;
-let sliderItems = [];
-
-async function loadSlider() {
-  const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
-  const data = await res.json();
-  sliderItems = data.results.slice(0, 5);
-  updateSlider();
-}
-
-function updateSlider() {
-  const item = sliderItems[sliderIndex];
-  const container = document.getElementById("active-slide");
-
-  const rating = item.vote_average?.toFixed(1) || "N/A";
-  const type = item.media_type === "tv" ? "TV Show" : "Movie";
-  const year = (item.release_date || item.first_air_date || "").slice(0, 4);
-  const summary = item.tagline || item.overview?.split(".")[0] || "No summary.";
-
-  container.innerHTML = `
-    <img src="${IMG_URL}${item.poster_path}" alt="${item.title || item.name}" />
-    <div class="overlay">
-      <p>⭐ ${rating} • ${type} • ${year}</p>
-      <h2>"${summary}"</h2>
-    </div>
-  `;
-}
-
-function nextSlide() {
-  sliderIndex = (sliderIndex + 1) % sliderItems.length;
-  updateSlider();
-}
-
-function prevSlide() {
-  sliderIndex = (sliderIndex - 1 + sliderItems.length) % sliderItems.length;
-  updateSlider();
-}
 
 // ✅ Display movie list
-function displayList(items, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  items.forEach(item => {
-    const img = document.createElement('img');
-    img.src = `${IMG_URL}${item.poster_path}`;
-    img.alt = item.title || item.name;
-    img.onclick = () => showDetails(item);
-    container.appendChild(img);
-  });
+async function loadSlider() {
+  const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
+  const data = await res.json();
+
+  console.log("Slider Data:", data.results); // ✅ log result
+
+  sliderItems = data.results.slice(0, 5);
+  updateSlider();
 }
 
 // ✅ Show movie details in modal
@@ -181,6 +142,7 @@ async function init() {
   const tvShows = await fetchTrending('tv');
   const anime = await fetchTrendingAnime();
 
+  loadSlider();
   displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
