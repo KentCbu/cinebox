@@ -40,6 +40,37 @@ function displayBanner(item) {
   document.getElementById('banner-tagline').textContent = `"${summary}"`;
 }
 
+// ✅ Carousel banner
+async function loadBannerCarousel() {
+  const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
+  const data = await res.json();
+  const carousel = document.getElementById('carousel-container');
+  carousel.innerHTML = '';
+
+  data.results.slice(0, 10).forEach(item => {
+    const poster = item.poster_path ? `${IMG_URL}${item.poster_path}` : '';
+
+    const rating = item.vote_average ? item.vote_average.toFixed(1) : "N/A";
+    const type = item.media_type === "tv" ? "TV Show" : "Movie";
+    const date = item.release_date || item.first_air_date || '';
+    const year = date ? new Date(date).getFullYear() : "N/A";
+    const summary = item.tagline || item.overview?.split('.')[0] || "No summary.";
+
+    const div = document.createElement('div');
+    div.className = 'poster-slide';
+    div.onclick = () => showDetails(item); // optional modal on click
+
+    div.innerHTML = `
+      <img src="${poster}" alt="${item.title || item.name}" />
+      <div class="overlay">
+        <p>⭐ ${rating} • ${type} • ${year}</p>
+        <h4>"${summary}"</h4>
+      </div>
+    `;
+    carousel.appendChild(div);
+  });
+}
+
 // ✅ Display movie list
 function displayList(items, containerId) {
   const container = document.getElementById(containerId);
@@ -158,7 +189,7 @@ async function init() {
   const tvShows = await fetchTrending('tv');
   const anime = await fetchTrendingAnime();
 
-  displayBanner(movies[Math.floor(Math.random() * movies.length)]);
+  loadBannerCarousel();
   displayList(movies, 'movies-list');
   displayList(tvShows, 'tvshows-list');
   displayList(anime, 'anime-list');
