@@ -31,16 +31,15 @@
     </div>
 
   <div class="banner-slider">
-  <div class="poster-box">
-    <img src="poster1.jpg" alt="Movie Title">
-    <div class="overlay">
-      <h2>Movie Title</h2>
-      <p>2023</p>
-    </div>
-  </div>
-  <!-- More posters... -->
-  </div>
+    <button class="nav prev" onclick="prevSlide()">❮</button>
 
+    <div class="poster-box" id="active-slide">
+      <!-- Poster and overlay will be injected by JS -->
+    </div>
+
+    <button class="nav next" onclick="nextSlide()">❯</button>
+  </div>
+    
     <button class="nav next" onclick="nextSlide()">❯</button>
   </div>
       
