@@ -183,7 +183,7 @@ body {
 .slide img {
   height: 90vh;
   aspect-ratio: 3/4;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
 }
